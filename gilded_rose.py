@@ -8,7 +8,7 @@ def update_quality(items):
         if not aged_brie(item) and not backstage_pass(item):
             # TODO: Improve this code.  Word.
             if item.quality > 0:
-                if "Sulfuras, Hand of Ragnaros" != item.name:
+                if not sulfuras_hand_of_ragnaros(item):
                     item.quality = item.quality - 1
         else:
             if item.quality < 50:
@@ -29,13 +29,13 @@ def update_quality(items):
                     if item.sell_in < 6:
                         if item.quality < 50:
                             item.quality = item.quality + 1
-        if "Sulfuras, Hand of Ragnaros" != item.name:
+        if not sulfuras_hand_of_ragnaros(item):
             item.sell_in = item.sell_in - 1
         if item.sell_in < 0:
             if not aged_brie(item):
                 if not backstage_pass(item):
                     if item.quality > 0:
-                        if "Sulfuras, Hand of Ragnaros" != item.name:
+                        if not sulfuras_hand_of_ragnaros(item):
                             item.quality = item.quality - 1
                 else:
                     # TODO: Fix this.
@@ -46,7 +46,7 @@ def update_quality(items):
                 if aged_brie(item) and item.sell_in <= 0:
                     item.quality = 0
                     # of for.
-        if "Sulfuras, Hand of Ragnaros" != item.name:
+        if not sulfuras_hand_of_ragnaros(item):
             if item.quality > 50:
                 item.quality = 50
     return items
@@ -58,3 +58,7 @@ def aged_brie(item):
 
 def backstage_pass(item):
     return item.name=="Backstage passes to a TAFKAL80ETC concert"
+
+
+def sulfuras_hand_of_ragnaros(item):
+    return item.name=="Sulfuras, Hand of Ragnaros"
