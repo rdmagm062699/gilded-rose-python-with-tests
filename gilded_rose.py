@@ -5,7 +5,7 @@ class GildedRose:
 
 def update_quality(items):
     for item in items:
-        if "Aged Brie" != item.name and "Backstage passes to a TAFKAL80ETC concert" != item.name:
+        if not aged_brie(item) and "Backstage passes to a TAFKAL80ETC concert" != item.name:
             # TODO: Improve this code.  Word.
             if item.quality > 0:
                 if "Sulfuras, Hand of Ragnaros" != item.name:
@@ -13,11 +13,11 @@ def update_quality(items):
         else:
             if item.quality < 50:
                 item.quality = item.quality + 1
-                if "Aged Brie" == item.name:
+                if aged_brie(item):
                     if item.sell_in < 6:
                         item.quality = item.quality + 1
                 # Increases the Quality of the stinky cheese if it's 11 days to due date.
-                if "Aged Brie" == item.name:
+                if aged_brie(item):
                     if item.sell_in < 11:
                         item.quality = item.quality + 1
                 if "Backstage passes to a TAFKAL80ETC concert" == item.name:
@@ -32,7 +32,7 @@ def update_quality(items):
         if "Sulfuras, Hand of Ragnaros" != item.name:
             item.sell_in = item.sell_in - 1
         if item.sell_in < 0:
-            if "Aged Brie" != item.name:
+            if not aged_brie(item):
                 if "Backstage passes to a TAFKAL80ETC concert" != item.name:
                     if item.quality > 0:
                         if "Sulfuras, Hand of Ragnaros" != item.name:
@@ -43,10 +43,13 @@ def update_quality(items):
             else:
                 if item.quality < 50:
                     item.quality = item.quality + 1
-                if "Aged Brie" == item.name and item.sell_in <= 0:
+                if aged_brie(item) and item.sell_in <= 0:
                     item.quality = 0
                     # of for.
         if "Sulfuras, Hand of Ragnaros" != item.name:
             if item.quality > 50:
                 item.quality = 50
     return items
+
+def aged_brie(item):
+    return item.name=="Aged Brie"
