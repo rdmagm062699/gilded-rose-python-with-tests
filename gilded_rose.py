@@ -10,7 +10,16 @@ class GildedRose:
         return items
 
 
+def appreciating_item(item: Item) -> bool:
+    return (
+        item.name == "Aged Brie"
+        or item.name == "Backstage passes to a TAFKAL80ETC concert"
+    )
+
+
 def update_quality(item: Item) -> int:
+    if appreciating_item(item):
+        return item.quality + 1
     return item.quality - 1
 
 
