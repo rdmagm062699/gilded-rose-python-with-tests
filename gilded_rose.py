@@ -17,9 +17,13 @@ def appreciating_item(item: Item) -> bool:
     )
 
 
+def calculate_appreciation(item: Item) -> int:
+    return 1 if item.sell_in > 10 else 2
+
+
 def update_quality(item: Item) -> int:
     if appreciating_item(item):
-        return item.quality + 1
+        return item.quality + calculate_appreciation(item)
     return item.quality - 1
 
 
