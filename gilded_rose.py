@@ -18,6 +18,9 @@ def appreciating_item(item: Item) -> bool:
 
 
 def calculate_appreciation(item: Item) -> int:
+    if item.sell_in <= 0:
+        # After sell by date passes, quality drops to 0.
+        return -1 * item.quality
     if item.sell_in <= 5:
         return 3
     if item.sell_in <= 10:

@@ -78,19 +78,19 @@ class GildedRoseTest(TestCase):
             self.assertEqual(item.quality, expectation["quality"])
             self.assertEqual(item.sell_in, expectation["sell_in"])
 
-    # def test_backstage_passes_and_brie_go_to_quality_zero_after_sell_by(self):
-    #     self.items.append(Item("Aged Brie", 0, 20))
-    #     self.items.append(Item("Backstage passes to a TAFKAL80ETC concert", 0, 20))
-    #     gilded_rose.update_quality(self.items)
-    #     expected = [
-    #         {'sell_in': -1, 'quality': 0},
-    #         {'sell_in': -1, 'quality': 0},
-    #     ]
+    def test_backstage_passes_and_brie_go_to_quality_zero_after_sell_by(self):
+        self.items.append(Item("Aged Brie", 0, 20))
+        self.items.append(Item("Backstage passes to a TAFKAL80ETC concert", 0, 20))
+        gilded_rose.update_quality(self.items)
+        expected = [
+            {"sell_in": -1, "quality": 0},
+            {"sell_in": -1, "quality": 0},
+        ]
 
-    #     for index, expectation in enumerate(expected):
-    #         item = self.items[index]
-    #         self.assertEqual(item.quality, expectation['quality'])
-    #         self.assertEqual(item.sell_in, expectation['sell_in'])
+        for index, expectation in enumerate(expected):
+            item = self.items[index]
+            self.assertEqual(item.quality, expectation["quality"])
+            self.assertEqual(item.sell_in, expectation["sell_in"])
 
     # def test_sulfuras_the_immutable(self):
     #     self.items.append(Item("Sulfuras, Hand of Ragnaros", 0, 80))
