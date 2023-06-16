@@ -92,13 +92,13 @@ class GildedRoseTest(TestCase):
             self.assertEqual(item.quality, expectation["quality"])
             self.assertEqual(item.sell_in, expectation["sell_in"])
 
-    # def test_sulfuras_the_immutable(self):
-    #     self.items.append(Item("Sulfuras, Hand of Ragnaros", 0, 80))
-    #     gilded_rose.update_quality(self.items)
-    #     expected = {'sell_in': 0, 'quality': 80}
-    #     item = self.items[0]
-    #     self.assertEqual(item.quality, expected['quality'])
-    #     self.assertEqual(item.sell_in, expected['sell_in'])
+    def test_sulfuras_the_immutable(self):
+        self.items.append(Item("Sulfuras, Hand of Ragnaros", 0, 80))
+        gilded_rose.update_quality(self.items)
+        expected = {"sell_in": 0, "quality": 80}
+        item = self.items[0]
+        self.assertEqual(item.quality, expected["quality"])
+        self.assertEqual(item.sell_in, expected["sell_in"])
 
     # def test_quality_does_not_increase_past_50(self):
     #     self.items.append(Item("Aged Brie", 4, 49))

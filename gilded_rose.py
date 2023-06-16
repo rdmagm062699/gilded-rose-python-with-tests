@@ -17,6 +17,10 @@ def appreciating_item(item: Item) -> bool:
     )
 
 
+def legendary_item(item: Item) -> bool:
+    return item.name == "Sulfuras, Hand of Ragnaros"
+
+
 def calculate_appreciation(item: Item) -> int:
     if item.sell_in <= 0:
         # After sell by date passes, quality drops to 0.
@@ -35,10 +39,14 @@ def calculate_depreciation(item: Item) -> int:
 
 
 def update_quality(item: Item) -> int:
+    if legendary_item(item):
+        return item.quality
     if appreciating_item(item):
         return item.quality + calculate_appreciation(item)
     return item.quality - calculate_depreciation(item)
 
 
 def update_sell_in(item: Item) -> int:
+    if legendary_item(item):
+        return item.sell_in
     return item.sell_in - 1
