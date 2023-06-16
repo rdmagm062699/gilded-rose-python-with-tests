@@ -66,7 +66,7 @@ class GildedRoseTest(TestCase):
 
     def test_quality_and_sellin_decrease_twice_as_fast_after_sell_by(self):
         self.items.append(Item("+5 Dexterity Vest", 0, 20))
-        self.items.append(Item("Conjured Mana Cake", 0, 6))
+        self.items.append(Item("+1 Bag of Holding", 0, 6))
         gilded_rose.update_quality(self.items)
         expected = [
             {"sell_in": -1, "quality": 18},
@@ -111,7 +111,15 @@ class GildedRoseTest(TestCase):
     def test_conjured_items_decrease_in_quality_twice_as_fast(self):
         self.items.append(Item("Conjured Mana Cake", 3, 6))
         gilded_rose.update_quality(self.items)
-        expected = {"sell_in": 2, "quality": 2}
+        expected = {"sell_in": 2, "quality": 4}
+        item = self.items[0]
+        self.assertEqual(item.quality, expected["quality"])
+        self.assertEqual(item.sell_in, expected["sell_in"])
+
+    def test_expired_conjured_items_decrease_in_quality_twice_as_fast(self):
+        self.items.append(Item("Conjured Mana Cake", 0, 6))
+        gilded_rose.update_quality(self.items)
+        expected = {"sell_in": -1, "quality": 2}
         item = self.items[0]
         self.assertEqual(item.quality, expected["quality"])
         self.assertEqual(item.sell_in, expected["sell_in"])
