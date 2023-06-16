@@ -108,11 +108,10 @@ class GildedRoseTest(TestCase):
         self.assertEqual(item.quality, expected["quality"])
         self.assertEqual(item.sell_in, expected["sell_in"])
 
-    # @skip
-    # def test_conjured_items_decrease_in_quality_twice_as_fast(self):
-    #     self.items.append(Item("Conjured Mana Cake", 3, 6))
-    #     gilded_rose.update_quality(self.items)
-    #     expected = {'sell_in': 2, 'quality': 2}
-    #     item = self.items[0]
-    #     self.assertEqual(item.quality, expected['quality'])
-    #     self.assertEqual(item.sell_in, expected['sell_in'])
+    def test_conjured_items_decrease_in_quality_twice_as_fast(self):
+        self.items.append(Item("Conjured Mana Cake", 3, 6))
+        gilded_rose.update_quality(self.items)
+        expected = {"sell_in": 2, "quality": 2}
+        item = self.items[0]
+        self.assertEqual(item.quality, expected["quality"])
+        self.assertEqual(item.sell_in, expected["sell_in"])

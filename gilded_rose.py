@@ -21,6 +21,10 @@ def legendary_item(item: Item) -> bool:
     return item.name == "Sulfuras, Hand of Ragnaros"
 
 
+def conjured_item(item: Item) -> bool:
+    return item.name == "Conjured Mana Cake"
+
+
 def calculate_appreciation(item: Item) -> int:
     if item.sell_in <= 0:
         # After sell by date passes, quality drops to 0.
@@ -43,6 +47,8 @@ def clamp(amount: int, limit: int) -> int:
 
 
 def update_quality(item: Item) -> int:
+    if conjured_item(item):
+        return item.quality - (calculate_depreciation(item) * 2)
     if legendary_item(item):
         return item.quality
     if appreciating_item(item):
