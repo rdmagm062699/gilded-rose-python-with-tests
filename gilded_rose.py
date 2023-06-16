@@ -38,11 +38,15 @@ def calculate_depreciation(item: Item) -> int:
     return 1
 
 
+def clamp(amount: int, limit: int) -> int:
+    return min(amount, limit)
+
+
 def update_quality(item: Item) -> int:
     if legendary_item(item):
         return item.quality
     if appreciating_item(item):
-        return item.quality + calculate_appreciation(item)
+        return clamp(item.quality + calculate_appreciation(item), 50)
     return item.quality - calculate_depreciation(item)
 
 

@@ -100,13 +100,13 @@ class GildedRoseTest(TestCase):
         self.assertEqual(item.quality, expected["quality"])
         self.assertEqual(item.sell_in, expected["sell_in"])
 
-    # def test_quality_does_not_increase_past_50(self):
-    #     self.items.append(Item("Aged Brie", 4, 49))
-    #     gilded_rose.update_quality(self.items)
-    #     expected = {'sell_in': 3, 'quality': 50}
-    #     item = self.items[0]
-    #     self.assertEqual(item.quality, expected['quality'])
-    #     self.assertEqual(item.sell_in, expected['sell_in'])
+    def test_quality_does_not_increase_past_50(self):
+        self.items.append(Item("Aged Brie", 4, 49))
+        gilded_rose.update_quality(self.items)
+        expected = {"sell_in": 3, "quality": 50}
+        item = self.items[0]
+        self.assertEqual(item.quality, expected["quality"])
+        self.assertEqual(item.sell_in, expected["sell_in"])
 
     # @skip
     # def test_conjured_items_decrease_in_quality_twice_as_fast(self):
