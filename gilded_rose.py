@@ -1,4 +1,7 @@
 
+INCREASING_QUALITY_ITEMS = ["Aged Brie", "Backstage passes to a TAFKAL80ETC concert"]
+
+
 class GildedRose:
     @staticmethod
     def update_quality(items):
@@ -8,7 +11,11 @@ class GildedRose:
 
 
 def _set_quality(item):
-    if item.name in ["Aged Brie", "Backstage passes to a TAFKAL80ETC concert"]:
+    if _increasing_quality_item(item):
         return item.quality + 1
 
     return item.quality - 1
+
+
+def _increasing_quality_item(item):
+    return item.name in INCREASING_QUALITY_ITEMS
