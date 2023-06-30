@@ -7,10 +7,10 @@ class GildedRose:
     def update_quality(items):
         for item in items:
             item.sell_in -= 1
-            item.quality = _set_quality(item)
+            item.quality = _calculate_quality(item)
 
 
-def _set_quality(item):
+def _calculate_quality(item):
     if _increasing_quality_item(item):
         return item.quality + _calculate_quality_increase(item)
 
