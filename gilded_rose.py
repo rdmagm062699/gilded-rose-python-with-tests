@@ -14,9 +14,7 @@ def _calculate_quality(item):
     if _increasing_quality_item(item):
         return item.quality + _calculate_quality_increase(item)
 
-    decrease_value = 1 if item.sell_in > 0 else 2
-
-    return item.quality - decrease_value
+    return item.quality - _calculate_quality_decrease(item)
 
 
 def _calculate_quality_increase(item):
@@ -26,6 +24,10 @@ def _calculate_quality_increase(item):
         return 2
 
     return 1
+
+
+def _calculate_quality_decrease(item):
+    return 1 if item.sell_in > 0 else 2
 
 
 def _increasing_quality_item(item):
