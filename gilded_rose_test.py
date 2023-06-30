@@ -61,19 +61,19 @@ class GildedRoseTest(TestCase):
             self.assertEqual(item.quality, expectation['quality'])
             self.assertEqual(item.sell_in, expectation['sell_in'])
 
-    # def test_quality_and_sellin_decrease_twice_as_fast_after_sell_by(self):
-    #     self.items.append(Item("+5 Dexterity Vest", 0, 20))
-    #     self.items.append(Item("Conjured Mana Cake", 0, 6))
-    #     gilded_rose.update_quality(self.items)
-    #     expected = [
-    #         {'sell_in': -1, 'quality': 18},
-    #         {'sell_in': -1, 'quality': 4},
-    #     ]
+    def test_quality_and_sellin_decrease_twice_as_fast_after_sell_by(self):
+        self.items.append(Item("+5 Dexterity Vest", 0, 20))
+        self.items.append(Item("Conjured Mana Cake", 0, 6))
+        gilded_rose.update_quality(self.items)
+        expected = [
+            {'sell_in': -1, 'quality': 18},
+            {'sell_in': -1, 'quality': 4},
+        ]
 
-    #     for index, expectation in enumerate(expected):
-    #         item = self.items[index]
-    #         self.assertEqual(item.quality, expectation['quality'])
-    #         self.assertEqual(item.sell_in, expectation['sell_in'])
+        for index, expectation in enumerate(expected):
+            item = self.items[index]
+            self.assertEqual(item.quality, expectation['quality'])
+            self.assertEqual(item.sell_in, expectation['sell_in'])
 
     # def test_backstage_passes_and_brie_go_to_quality_zero_after_sell_by(self):
     #     self.items.append(Item("Aged Brie", 0, 20))
