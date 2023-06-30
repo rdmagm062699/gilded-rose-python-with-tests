@@ -12,10 +12,8 @@ class GildedRose:
 
 def _set_quality(item):
     if _increasing_quality_item(item):
-        if item.sell_in <= 10:
-            return item.quality + 2
-        else:
-            return item.quality + 1
+        value = 1 if item.sell_in > 10 else 2
+        return item.quality + value
 
     return item.quality - 1
 
