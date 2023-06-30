@@ -19,19 +19,19 @@ class GildedRoseTest(TestCase):
         self.assertEqual(item.quality, expected['quality'])
         self.assertEqual(item.sell_in, expected['sell_in'])
 
-    # def test_quality_goes_up_for_improving_products(self):
-    #     self.items.append(Item("Aged Brie", 20, 30))
-    #     self.items.append(Item("Backstage passes to a TAFKAL80ETC concert", 20, 30))
-    #     gilded_rose.update_quality(self.items)
-    #     expected = [
-    #           {'sell_in': 19, 'quality': 31},
-    #           {'sell_in': 19, 'quality': 31},
-    #         ]
+    def test_quality_goes_up_for_improving_products(self):
+        self.items.append(Item("Aged Brie", 20, 30))
+        self.items.append(Item("Backstage passes to a TAFKAL80ETC concert", 20, 30))
+        gilded_rose.update_quality(self.items)
+        expected = [
+              {'sell_in': 19, 'quality': 31},
+              {'sell_in': 19, 'quality': 31},
+            ]
 
-    #     for index, expectation in enumerate(expected):
-    #         item = self.items[index]
-    #         self.assertEqual(item.quality, expectation['quality'])
-    #         self.assertEqual(item.sell_in, expectation['sell_in'])
+        for index, expectation in enumerate(expected):
+            item = self.items[index]
+            self.assertEqual(item.quality, expectation['quality'])
+            self.assertEqual(item.sell_in, expectation['sell_in'])
 
     # def test_quality_goes_up_by_two_for_improving_products_with_10_days_or_less_left(self):
     #     self.items.append(Item("Aged Brie", 10, 34))

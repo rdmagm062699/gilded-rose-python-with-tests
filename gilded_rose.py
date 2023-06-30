@@ -1,8 +1,14 @@
-from copy import deepcopy
-
 
 class GildedRose:
     @staticmethod
     def update_quality(items):
-       items[0].sell_in -= 1
-       items[0].quality -= 1
+        for item in items:
+            item.sell_in -= 1
+            item.quality = _set_quality(item)
+
+
+def _set_quality(item):
+    if item.name in ["Aged Brie", "Backstage passes to a TAFKAL80ETC concert"]:
+        return item.quality + 1
+
+    return item.quality - 1
